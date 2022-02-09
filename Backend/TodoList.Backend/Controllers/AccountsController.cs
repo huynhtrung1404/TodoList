@@ -29,5 +29,11 @@ namespace TodoList.Backend.Controllers
         {
             return Ok(await _mediator.Send(new SignUpRequest(signUp)));
         }
+
+        [HttpPost("AddRole")]
+        public async Task<IActionResult> AddRole([FromBody] string role)
+        {
+            return Ok(await _mediator.Send(new AddNewRoleRequest(role)));
+        }
     }
 }

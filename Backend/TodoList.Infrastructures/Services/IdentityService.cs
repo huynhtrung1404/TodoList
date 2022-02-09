@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using TodoList.Applications.Dtos;
 using TodoList.Applications.Interfaces.Services;
 using TodoList.Infrastructures.Persistences.Identities.Models;
+using TodoList.Shared.CrossCutting.Enum;
 
 namespace TodoList.Infrastructures.Services
 {
@@ -29,9 +30,19 @@ namespace TodoList.Infrastructures.Services
             _dateTimeService = dateTimeService;
         }
 
-        public Task<bool> AddNewRoleAsync(string role)
+        public async Task<bool> AddNewRoleAsync(string role)
         {
-            throw new NotImplementedException();
+            var roleName = await _roleManager.FindByNameAsync(role);
+            if (roleName != null)
+            {
+                throw new Exception("Role is existing");
+            }
+
+            var result = await _roleManager.CreateAsync(new IdentityRole<Guid>
+            {
+                Name = role,
+            });
+            return result.Succeeded;
         }
 
         public async Task<UserInformationDto> SignInAsync(SignInDto signInInfo)
@@ -45,9 +56,10 @@ namespace TodoList.Infrastructures.Services
 
             var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, $"{user.Id}"),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Role,userRoles.FirstOrDefault() == null ? String.Empty : userRoles.First())
+                    new Claim(ClaimTypes.Role,userRoles.FirstOrDefault() == null ? string.Empty : userRoles.First()),
+                    new Claim(ClaimTypes.Name, user.UserName)
                 };
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));
 
@@ -88,6 +100,7 @@ namespace TodoList.Infrastructures.Services
             };
 
             var result = await _userManager.CreateAsync(todoListUser, signUpInfo.Password);
+            await _userManager.AddToRoleAsync(todoListUser, RoleEnum.User.ToString());
 
             return result.Succeeded;
         }
