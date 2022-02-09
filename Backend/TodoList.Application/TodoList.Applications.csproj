@@ -19,9 +19,4 @@
     <ProjectReference Include="..\TodoList.Models\TodoList.Entitites.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\TodoLists\Commands\" />
-    <Folder Include="Features\TodoLists\Queries\Specificat\" />
-  </ItemGroup>
-
 </Project>

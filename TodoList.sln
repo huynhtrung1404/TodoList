@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Backend", "TodoList.Backend\TodoList.Backend.csproj", "{9CA946CC-927E-4762-AA05-D1BC58620AC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Backend", "Backend\TodoList.Backend\TodoList.Backend.csproj", "{9CA946CC-927E-4762-AA05-D1BC58620AC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B9CA086E-4143-485A-AEBC-C5F23B25BEAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Applications", "TodoList.Application\TodoList.Applications.csproj", "{1FE3836A-79DA-4AD9-9B43-5C7E7A299EF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Applications", "Backend\TodoList.Application\TodoList.Applications.csproj", "{1FE3836A-79DA-4AD9-9B43-5C7E7A299EF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Entitites", "TodoList.Models\TodoList.Entitites.csproj", "{810CE5F1-842A-4ECB-9C59-40DD4CD74450}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Entitites", "Backend\TodoList.Models\TodoList.Entitites.csproj", "{810CE5F1-842A-4ECB-9C59-40DD4CD74450}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Infrastructures", "TodoList.Infrastructures\TodoList.Infrastructures.csproj", "{0845C68E-C056-43D7-A0CB-2CA847D5B7F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Infrastructures", "Backend\TodoList.Infrastructures\TodoList.Infrastructures.csproj", "{0845C68E-C056-43D7-A0CB-2CA847D5B7F5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{0F1E25D3-E211-4A69-98E7-A5B726E342C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Frontend", "TodoList.Frontend\TodoList.Frontend.csproj", "{D945F3AA-2BB7-4C9C-932D-CD8BC8E07196}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Frontend", "Frontend\TodoList.Frontend\TodoList.Frontend.csproj", "{D945F3AA-2BB7-4C9C-932D-CD8BC8E07196}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Shared.CrossCutting", "TodoList.Shared.CrossCutting\TodoList.Shared.CrossCutting.csproj", "{BED65E4C-3EA9-4398-BD8B-8EBC00C114AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Shared.CrossCutting", "Backend\TodoList.Shared.CrossCutting\TodoList.Shared.CrossCutting.csproj", "{BED65E4C-3EA9-4398-BD8B-8EBC00C114AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

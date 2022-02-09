@@ -72,7 +72,7 @@ namespace TodoList.Infrastructures.Persistences.Repositories
 
         public async Task<IEnumerable<TEntity>> GetListItemBySpecificationAsync(ISpecification<TEntity> spec, int pageSize, int pageIndex)
         {
-            return await (SpecificationQuery<TEntity>.QueryListItem(Context.Set<TEntity>(), spec)).ToPaginationAsync(pageIndex, pageSize);
+            return await (SpecificationQuery<TEntity>.QueryListItemAsync(Context.Set<TEntity>(), spec, pageSize, pageIndex));
         }
     }
 }

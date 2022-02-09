@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoList.Applications.Interfaces.Specifications;
-using TodoList.Entities.Entities;
+using TodoList.Infrastructures.Persistences.Paginations;
 
 namespace TodoList.Infrastructures.Persistences.Specifications
 {
     public static class SpecificationQuery<TItem> where TItem : class
     {
-        public static IQueryable<TItem> QueryListItem(IQueryable<TItem> items, ISpecification<TItem> spec)
+        public static async Task<IQueryable<TItem>> QueryListItemAsync(IQueryable<TItem> items, ISpecification<TItem> spec, int pageSize, int pageNumber)
         {
             var query = items;
             query = spec.Includes
@@ -19,7 +19,7 @@ namespace TodoList.Infrastructures.Persistences.Specifications
 
             if (spec.Criteria != null)
             {
-                query = query.Where(spec.Criteria);
+                query = (IQueryable<TItem>) await query.Where(spec.Criteria).ToPaginationAsync(pageSize, pageNumber);
             }
 
             return query;
@@ -63,7 +63,7 @@ namespace TodoList.Infrastructures.Persistences.Specifications
                 query = query.Where(spec.Criteria);
             }
 
-            return await query.FirstAsync();
+            return await query.SingleAsync();
         }
     }
 }
