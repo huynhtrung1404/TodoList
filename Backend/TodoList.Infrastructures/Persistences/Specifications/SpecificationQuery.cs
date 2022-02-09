@@ -19,7 +19,8 @@ namespace TodoList.Infrastructures.Persistences.Specifications
 
             if (spec.Criteria != null)
             {
-                query = (IQueryable<TItem>) await query.Where(spec.Criteria).ToPaginationAsync(pageSize, pageNumber);
+               var data = await query.Where(spec.Criteria).ToPaginationAsync(pageSize, pageNumber);
+               query = data.AsQueryable();
             }
 
             return query;

@@ -8,9 +8,9 @@ using TodoList.Entities.Entities;
 
 namespace TodoList.Applications.Features.TodoLists.Queries
 {
-    public class GetTotoListsByUserRequest : IRequest<IEnumerable<TodoTaskDto>>
+    public class GetTodoListsByUserRequest : IRequest<IEnumerable<TodoTaskDto>>
     {
-        public GetTotoListsByUserRequest(int pageSize, int pageIndex)
+        public GetTodoListsByUserRequest(int pageSize, int pageIndex)
         {
             PageIndex = pageIndex;
             PageSize = pageSize;
@@ -19,7 +19,7 @@ namespace TodoList.Applications.Features.TodoLists.Queries
         public int PageSize { get; set; }
     }
 
-    public class GetTodoListByUserHandler : IRequestHandler<GetTotoListsByUserRequest, IEnumerable<TodoTaskDto>>
+    public class GetTodoListByUserHandler : IRequestHandler<GetTodoListsByUserRequest, IEnumerable<TodoTaskDto>>
     {
         private readonly IAsyncRepository<TodoTask, Guid> _todoTaskRepo;
         private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ namespace TodoList.Applications.Features.TodoLists.Queries
             _mapper = mapper;
             _userService = userService;
         }
-        public async Task<IEnumerable<TodoTaskDto>> Handle(GetTotoListsByUserRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TodoTaskDto>> Handle(GetTodoListsByUserRequest request, CancellationToken cancellationToken)
         {
             var result = await _todoTaskRepo.GetListItemBySpecificationAsync(new TodoTaskSpecification(Guid.Parse(_userService.UserName)),request.PageSize, request.PageIndex);
             return _mapper.Map<IEnumerable<TodoTaskDto>>(result);

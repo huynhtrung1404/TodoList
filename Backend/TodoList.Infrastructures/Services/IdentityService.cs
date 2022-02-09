@@ -20,14 +20,12 @@ namespace TodoList.Infrastructures.Services
         private readonly UserManager<TodoListUser> _userManager;
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly IConfiguration _configuration;
-        private readonly IDateTimeService _dateTimeService;
 
-        public IdentityService(RoleManager<IdentityRole<Guid>> roleManager, UserManager<TodoListUser> userManager, IConfiguration configuration, IDateTimeService dateTimeService)
+        public IdentityService(RoleManager<IdentityRole<Guid>> roleManager, UserManager<TodoListUser> userManager, IConfiguration configuration)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _configuration = configuration;
-            _dateTimeService = dateTimeService;
         }
 
         public async Task<bool> AddNewRoleAsync(string role)
@@ -66,7 +64,7 @@ namespace TodoList.Infrastructures.Services
             var token = new JwtSecurityToken(
                 issuer: _configuration["JwtConfig:ValidIssuer"],
                 audience: _configuration["JwtConfig:ValidAudience"],
-                expires: _dateTimeService.Now.DateTime.AddHours(3),
+                expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
              );
