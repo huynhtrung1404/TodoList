@@ -12,5 +12,6 @@ namespace TodoList.Applications.Interfaces.Services
         Task<UserInformationDto> SignInAsync(SignInDto signInInfo);
         Task<bool> SignUpAsync(SignUpDto signUpInfo);
         Task<bool> AddNewRoleAsync(string role);
+        Task<string> GetIdByUserNameAsync(string userName);
     }
 }

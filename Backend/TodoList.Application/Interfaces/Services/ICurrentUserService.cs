@@ -1,8 +1,7 @@
 ﻿namespace TodoList.Applications.Interfaces.Services
 {
-    public interface IUserService
+    public interface ICurrentUserService
     {
-        string UserId { get; }
         string UserName { get; }
         string Role { get; }
 

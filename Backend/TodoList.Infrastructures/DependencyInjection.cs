@@ -23,7 +23,7 @@ namespace TodoList.Infrastructures
             services.AddTransient(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
             services.AddTransient(typeof(IAsyncRepository<,>), typeof(AsyncRepository<,>));
             services.AddIdentity<TodoListUser, IdentityRole<Guid>>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICurrentUserService, UserService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();

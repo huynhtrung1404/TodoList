@@ -42,7 +42,7 @@ namespace TodoList.Infrastructures.Persistences.Specifications
                 query = query.Where(spec.Criteria);
             }
 
-            return query.First();
+            return query.Single();
         }
    
 

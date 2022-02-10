@@ -43,6 +43,12 @@ namespace TodoList.Infrastructures.Services
             return result.Succeeded;
         }
 
+        public async Task<string> GetIdByUserNameAsync(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return user.Id + string.Empty;
+        }
+
         public async Task<UserInformationDto> SignInAsync(SignInDto signInInfo)
         {
             var user = await _userManager.FindByNameAsync(signInInfo.UserName);
@@ -53,12 +59,12 @@ namespace TodoList.Infrastructures.Services
             var userRoles = await _userManager.GetRolesAsync(user);
 
             var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, $"{user.Id}"),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Role,userRoles.FirstOrDefault() == null ? string.Empty : userRoles.First()),
-                    new Claim(ClaimTypes.Name, user.UserName)
-                };
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role,userRoles.FirstOrDefault() == null ? string.Empty : userRoles.First()),
+                new Claim(ClaimTypes.Name, user.FullName)
+            };
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:Secret"]));
 
             var token = new JwtSecurityToken(

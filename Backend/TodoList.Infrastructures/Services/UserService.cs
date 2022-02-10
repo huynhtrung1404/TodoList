@@ -4,7 +4,7 @@ using TodoList.Applications.Interfaces.Services;
 
 namespace TodoList.Infrastructures.Services
 {
-    public class UserService : IUserService
+    public class UserService : ICurrentUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -13,7 +13,7 @@ namespace TodoList.Infrastructures.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string UserId
+        public string UserName
         {
             get
             {
@@ -24,8 +24,8 @@ namespace TodoList.Infrastructures.Services
                 return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
         }
-        public string UserName => throw new NotImplementedException();
 
         public string Role => throw new NotImplementedException();
+
     }
 }
