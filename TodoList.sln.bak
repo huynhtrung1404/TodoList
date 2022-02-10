@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Entitites", "Backe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Infrastructures", "Backend\TodoList.Infrastructures\TodoList.Infrastructures.csproj", "{0845C68E-C056-43D7-A0CB-2CA847D5B7F5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{0F1E25D3-E211-4A69-98E7-A5B726E342C5}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Shared.CrossCutting", "Backend\TodoList.Shared.CrossCutting\TodoList.Shared.CrossCutting.csproj", "{BED65E4C-3EA9-4398-BD8B-8EBC00C114AD}"
 EndProject
 Global
