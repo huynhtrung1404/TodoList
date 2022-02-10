@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using TodoList.Applications;
 using TodoList.Infrastructures;
+using TodoList.Shared.CrossCutting.Constant;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen(swagger =>
     {
         Version = "v1",
         Title = "JWT Token Authentication API",
-        Description = "ASP.NET Core 3.1 Web API"
+        Description = "ASP.NET Core 6 Web API"
     });
     // To Enable authorization using Swagger (JWT)
     swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -28,20 +29,27 @@ builder.Services.AddSwaggerGen(swagger =>
         Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
     });
     swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
                 {
-                    {
-                          new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
-                    }
-                });
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
 });
+
+builder.Services.AddCors(options => options.AddPolicy(ConfigurationVariable.Cors, builder =>
+{
+    builder.AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod();
+}));
 
 var app = builder.Build();
 
@@ -52,6 +60,8 @@ if (builder.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(ConfigurationVariable.Cors);
 
 app.UseAuthentication();
 

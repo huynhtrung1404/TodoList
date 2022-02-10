@@ -13,7 +13,7 @@ namespace TodoList.Infrastructures.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string UserName
+        public string UserId
         {
             get
             {
@@ -24,7 +24,7 @@ namespace TodoList.Infrastructures.Services
                 return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
         }
-        public string Token => throw new NotImplementedException();
+        public string UserName => throw new NotImplementedException();
 
         public string Role => throw new NotImplementedException();
     }

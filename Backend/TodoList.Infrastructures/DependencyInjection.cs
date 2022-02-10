@@ -26,6 +26,7 @@ namespace TodoList.Infrastructures
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -33,5 +33,6 @@ namespace TodoList.Applications.Interfaces.Repositories
         Task<int> TotalCountAsync();
 
         Task<IEnumerable<TEntity>> GetListItemBySpecificationAsync(ISpecification<TEntity> spec, int pageSize, int pageNumber);
+        Task<TEntity> GetItemBySpecificationAsync(ISpecification<TEntity> spec);
     }
 }

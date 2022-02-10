@@ -2,8 +2,8 @@
 {
     public interface IUserService
     {
+        string UserId { get; }
         string UserName { get; }
-        string Token { get; }
         string Role { get; }
 
     }

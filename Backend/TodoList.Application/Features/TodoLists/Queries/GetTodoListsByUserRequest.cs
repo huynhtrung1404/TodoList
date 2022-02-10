@@ -32,7 +32,7 @@ namespace TodoList.Applications.Features.TodoLists.Queries
         }
         public async Task<IEnumerable<TodoTaskDto>> Handle(GetTodoListsByUserRequest request, CancellationToken cancellationToken)
         {
-            var result = await _todoTaskRepo.GetListItemBySpecificationAsync(new TodoTaskSpecification(Guid.Parse(_userService.UserName)),request.PageSize, request.PageIndex);
+            var result = await _todoTaskRepo.GetListItemBySpecificationAsync(new TodoTaskSpecification(Guid.Parse(_userService.UserId)),request.PageSize, request.PageIndex);
             return _mapper.Map<IEnumerable<TodoTaskDto>>(result);
         }
     }
